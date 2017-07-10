@@ -1,4 +1,5 @@
 import { CriterioSeleccion } from './../../../models/criterio-seleccion.model';
+import { FiltrosService } from './../../../filtros.service';
 import { Component, OnInit, Input} from '@angular/core';
 
 const defaultSeleccion = {raza: -1, nivelBMI: -1, etapaVida: -1};
@@ -10,64 +11,28 @@ const defaultSeleccion = {raza: -1, nivelBMI: -1, etapaVida: -1};
 })
 export class CriteriosSeleccionComponent implements OnInit {
 
+  @Input() razas;
   @Input() criterios: CriterioSeleccion[];
 
   seleccion = defaultSeleccion;
 
-  especies = [{
-    id: 1,
-    nombre: 'perro'
-  }, {
-    id: 2,
-    nombre: 'gato'
-  }];
+  niveles_bmi;
+  etapas_vida;
 
-  razas = [{
-    id: 1,
-    nombre: 'pequinez'
-  }, {
-    id: 2,
-    nombre: 'shitzu'
-  }];
+  constructor(private filtrosService: FiltrosService) {
 
-  niveles_bmi = [{
-    id: 1,
-    nombre: 'bajo peso'
-  },
-  {
-    id: 2,
-    nombre: 'peso normal'
-  },
-  {
-    id: 3,
-    nombre: 'sobre peso'
-  }];
-
-  etapas_vida= [
-    {
-      id: 1,
-      nombre: 'cachorro'
-    },
-    {
-      id: 2,
-      nombre: 'adulto'
-    },
-    {
-      id: 3,
-      nombre: 'senior'
-    }
-  ];
-
-  constructor() {  }
+  }
 
   ngOnInit() {
+    this.niveles_bmi = this.filtrosService.getNivelesBMI();
+    this.etapas_vida = this.filtrosService.getEtapasVida();
   }
 
   agregarCriterio() {
     let {raza, nivelBMI, etapaVida} = this.seleccion;
     const criterio:CriterioSeleccion = {raza,nivelBMI,etapaVida};
     if (this.existeCriterio(criterio)){
-      console.log('Ya existe criterio');
+      alert('Ya existe criterio con esa combinación');
     } else {
       this.criterios.push(criterio);
     }

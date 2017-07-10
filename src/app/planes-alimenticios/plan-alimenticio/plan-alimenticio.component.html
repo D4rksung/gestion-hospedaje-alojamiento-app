@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h1>
+    <h1 style="text-align: center">
       {{title}}
     </h1>
   </div>
@@ -38,9 +38,9 @@
     <textarea id="descripcion" class="form-control" [(ngModel)]="planAlimenticio.descripcion"></textarea>
   </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="razas && razas.length">
   <div class="col-md-12">
-    <gha-criterios-seleccion [criterios]="planAlimenticio.criterios"></gha-criterios-seleccion>
+    <gha-criterios-seleccion [criterios]="planAlimenticio.criterios" [razas]="razas"></gha-criterios-seleccion>
   </div>
 </div>
 <div class="row">
@@ -50,8 +50,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-primary" (click)="guardar()">Guardar</button>
+    <button class="btn btn-danger" (click)="guardar()">Guardar</button>
     <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
   </div>
 </div>
-<gha-informacion-nutricional [programacionesDia]="planAlimenticio.programacionesDia"></gha-informacion-nutricional>

@@ -1,5 +1,6 @@
 import { CondicionMedica } from './../../models/condicion-medica.model';
 import { Especie } from './../../models/especie.model';
+import { Raza } from './../../models/raza.model';
 import { FiltrosService } from './../../filtros.service';
 import { PlanAlimenticioService } from './../shared/plan-alimenticio.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +19,7 @@ export class PlanAlimenticioComponent implements OnInit {
   title = 'Definir Plan Alimenticio';
   especies:Especie[];
   condicionesMedicas:CondicionMedica[] = [];
+  razas:Raza[];
 
   @Input() planAlimenticio: PlanAlimenticio;
 
@@ -38,6 +40,7 @@ export class PlanAlimenticioComponent implements OnInit {
   onchangeEspecie(especie: number){
     this.planAlimenticio.condicionMedica = -1;
     this.condicionesMedicas = especie>=0?this.filtrosService.getCondicionesMedicas(especie):[];
+    this.razas=especie>=0?this.filtrosService.getRazas(especie):[];
   }
 
   setPlanAlimenticio(planAlimenticio:PlanAlimenticio){
@@ -61,7 +64,7 @@ export class PlanAlimenticioComponent implements OnInit {
   }
 
   validarDatos(){
-    let result = false;
+    let result = true;
     const {nombre,especie,condicionMedica,criterios,programacionesDia} = this.planAlimenticio;
     if(!(nombre && nombre.length)){
       result = false;

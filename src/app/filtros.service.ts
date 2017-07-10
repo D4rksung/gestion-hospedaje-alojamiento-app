@@ -46,8 +46,16 @@ export class FiltrosService {
     return this.filtros.especies;
   }
 
+  getRazasFull(){
+    return this.filtros.razas;
+  }
+
   getRazas(especie: number){
     return this.filtros.razas.filter(r=>r.especie == especie);
+  }
+
+  getCondicionesMedicasFull(){
+    return this.filtros.condicionesMedicas;
   }
 
   getCondicionesMedicas(especie: number){

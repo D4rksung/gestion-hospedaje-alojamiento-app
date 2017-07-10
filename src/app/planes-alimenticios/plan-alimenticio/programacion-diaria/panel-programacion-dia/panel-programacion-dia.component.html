@@ -3,7 +3,7 @@
     <div class="form-group col-md-4">
       <label for="comidas">Comidas Programadas</label>
       <div class="btn-group" data-toggle="buttons" id="comidas">
-        <label class="btn btn-primary" *ngFor="let comida of comidas" [class.active]="comida.active">
+        <label class="btn btn-danger" *ngFor="let comida of comidas" [class.active]="comida.active">
           <input type="checkbox" [checked]="comida.active" (change)="actualizarEstadoComida($event.target.checked,comida.tipo)">{{comida.abreviatura | uppercase}}
         </label>
       </div>

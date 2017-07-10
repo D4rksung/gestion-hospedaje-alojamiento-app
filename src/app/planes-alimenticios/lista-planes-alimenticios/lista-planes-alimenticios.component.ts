@@ -21,6 +21,11 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
   especies: Especie[];
   condicionesMedicas: CondicionMedica[];
 
+  razas;
+  niveles_bmi;
+  etapas_vida;
+  condiciones_medicas;
+
   planesAlimenticios:PlanAlimenticio[]=[];
   filteredPlanesAlimenticios:PlanAlimenticio[]=[];
 
@@ -32,7 +37,11 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
       this.planesAlimenticios = planesAlimenticios;
     });
     this.especies = this.filtrosService.getEspecies();
+    this.razas = this.filtrosService.getRazasFull();
+    this.niveles_bmi = this.filtrosService.getNivelesBMI();
+    this.etapas_vida = this.filtrosService.getEtapasVida();
     this.condicionesMedicas = [];
+    this.condiciones_medicas = this.filtrosService.getCondicionesMedicasFull();
   }
 
   onchangeEspecie(especie: number){
@@ -59,10 +68,18 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
   }
 
   eliminar(planAlimenticio:PlanAlimenticio){
-    if(!confirm(`¿Está seguro que desea eliminar el plan alimenticio ${planAlimenticio.nombre}?`)){
+    if(confirm(`¿Está seguro que desea eliminar el plan alimenticio ${planAlimenticio.nombre}?`)){
       this.planAlimenticioService.deletePlanAlimenticio(planAlimenticio)
       .subscribe(a=>this.buscarPlanesAlimenticios());
     }
+  }
+
+  getNombreEspecie(id:number){
+    return this.especies.find(e=>e.id==id).nombre;
+  }
+
+  getNombreCondicionMedica(id:number){
+    return this.condiciones_medicas.find(c=>c.id==id).nombre;
   }
 
 }
