@@ -1,0 +1,222 @@
+{
+  "alimentos": [
+    {
+      "id": 1,
+      "nombre": "Chuletas",
+      "subCategoria": 2,
+      "cantidad": 100,
+      "unidad": "g",
+      "composicion": [
+        {
+          "id": 1,
+          "nombre": "vitaminas",
+          "componentes": [
+            {
+              "id": 1,
+              "nombre": "A",
+              "cantidad": 10,
+              "unidad": "g"
+            },
+            {
+              "id": 2,
+              "nombre": "B",
+              "cantidad": 20,
+              "unidad": "g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Costillas",
+      "subCategoria": 1,
+      "cantidad": 100,
+      "unidad": "g",
+      "composicion": [
+        {
+          "id": 1,
+          "nombre": "vitaminas",
+          "componentes": [
+            {
+              "id": 1,
+              "nombre": "A",
+              "cantidad": 10,
+              "unidad": "g"
+            },
+            {
+              "id": 2,
+              "nombre": "B",
+              "cantidad": 20,
+              "unidad": "g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Lomo Fino",
+      "subCategoria": 1,
+      "cantidad": 100,
+      "unidad": "g",
+      "composicion": [
+        {
+          "id": 1,
+          "nombre": "vitaminas",
+          "componentes": [
+            {
+              "id": 1,
+              "nombre": "A",
+              "cantidad": 10,
+              "unidad": "g"
+            },
+            {
+              "id": 2,
+              "nombre": "B",
+              "cantidad": 20,
+              "unidad": "g"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filtros": {
+    "especies": [
+      {
+        "id": 1,
+        "nombre": "perro"
+      },
+      {
+        "id": 2,
+        "nombre": "gato"
+      }
+    ],
+    "razas": [
+      {
+        "id": 1,
+        "nombre": "Bulldog",
+        "especie": 1
+      },
+      {
+        "id": 2,
+        "nombre": "Collie",
+        "especie": 1
+      },
+      {
+        "id": 3,
+        "nombre": "Pastor Aleman",
+        "especie": 1
+      },
+      {
+        "id": 8,
+        "nombre": "Siames",
+        "especie": 2
+      },
+      {
+        "id": 9,
+        "nombre": "Persa",
+        "especie": 3
+      }
+    ],
+    "condicionesMedicas": [
+      {
+        "id": 1,
+        "nombre": "sano",
+        "especies": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "fiebre perruna",
+        "especies": [
+          1
+        ]
+      },
+      {
+        "id": 3,
+        "nombre": "gripe gatuna",
+        "especies": [
+          2
+        ]
+      }
+    ],
+    "nivelesBMI": [
+      {
+        "id": 1,
+        "nombre": "Bajo peso"
+      },
+      {
+        "id": 2,
+        "nombre": "Peso normal"
+      },
+      {
+        "id": 3,
+        "nombre": "Sobre peso"
+      }
+    ],
+    "etapasVida": [
+      {
+        "id": 1,
+        "nombre": "Cachorro"
+      },
+      {
+        "id": 2,
+        "nombre": "Adulto"
+      },
+      {
+        "id": 1,
+        "nombre": "Senior"
+      }
+    ],
+    "categorias": [
+      {
+        "id": 1,
+        "nombre": "Carnes"
+      }
+    ],
+    "subCategorias": [
+      {
+        "id": 1,
+        "categoria": 1,
+        "nombre": "Carne de Cerdo"
+      },
+      {
+        "id": 2,
+        "categoria": 1,
+        "nombre": "Carne de Res"
+      }
+    ]
+  },
+  "planesAlimenticios": [
+    {
+      "especie": "1",
+      "condicionMedica": "1",
+      "criterios": [
+        {
+          "raza": "1",
+          "nivelBMI": "1",
+          "etapaVida": "2"
+        }
+      ],
+      "programacionesDia": [
+        {
+          "numeroDia": 1,
+          "comidas": [
+            {
+              "tipo": 2,
+              "alimentos": [
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "nombre": "efg",
+      "id": 4
+    }
+  ]
+}

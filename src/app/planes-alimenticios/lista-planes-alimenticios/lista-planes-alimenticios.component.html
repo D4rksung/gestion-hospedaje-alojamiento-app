@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-md-4">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" class="form-control" [(ngModel)]="filtros.nombre">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="especie">Especie</label>
+    <select id="especie" class="form-control" [(ngModel)]="filtros.especie"  (change)="onchangeEspecie(filtros.especie)">
+      <option value="-1">Seleccionar</option>
+      <option *ngFor="let especie of especies" [value]="especie.id">{{especie.nombre | titlecase}}</option>
+    </select>
+  </div>
+  <div class="form-group col-md-3">
+    <label for="condicion_medica">Condición Médica</label>
+    <select id="condicion_medica" class="form-control" [(ngModel)]="filtros.condicionMedica">
+      <option value="-1">Seleccionar</option>
+      <option *ngFor="let condicionMedica of condicionesMedicas" [value]="condicionMedica.id">{{condicionMedica.nombre | titlecase}}</option>
+    </select>
+  </div>
+  <div class="form-group col-md-2">
+    <button class="btn btn-primary" (click)="buscarPlanesAlimenticios()">Buscar</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-primary" [routerLink]="['/planesAlimenticios','new']">Nuevo</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-condensed table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Estado Salud</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="planesAlimenticios.length==0">
+          <td colspan="4" class="text-center">No existen planes alimenticios que coincidan con los criterios ingresados</td>
+        </tr>
+        <tr *ngFor="let planAlimenticio of planesAlimenticios; let i=index">
+          <td>
+            {{planAlimenticio.nombre}}
+          </td>
+          <td>
+            {{planAlimenticio.especie}}
+          </td>
+          <td>
+            {{planAlimenticio.condicionMedica}}
+          </td>
+          <td>
+            <button class="btn-link" [routerLink]="['/planesAlimenticios',planAlimenticio.id]">
+          <i class="fa fa-pencil"></i>
+        </button>
+            <button class="btn-link" (click)="eliminar(planAlimenticio)">
+          <i class="fa fa-trash"></i>
+        </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

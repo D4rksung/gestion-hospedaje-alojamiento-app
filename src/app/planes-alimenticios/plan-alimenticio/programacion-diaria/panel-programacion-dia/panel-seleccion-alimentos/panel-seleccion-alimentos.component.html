@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-5">
+    <label for="categoria">Categoria</label>
+    <select id="categoria" class="form-control" [(ngModel)]="filtros.categoria" (change)="onchangeCategoria(filtros.categoria)">
+      <option value="-1">Seleccionar</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
+    </select>
+  </div>
+  <div class="col-md-5">
+    <label for="subcategoria">Subcategoria</label>
+    <select id="subcategoria" class="form-control" [(ngModel)]="filtros.subcategoria" (change)="filtrarAlimentos()">
+      <option value="-1">Seleccionar</option>
+      <option *ngFor="let subcategoria of subcategorias" [value]="subcategoria.id">{{subcategoria.nombre}}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-condensed table-striped">
+      <thead>
+        <tr>
+          <th>Seleccionar</th>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Uni.Med.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!seleccionTable.totalRows">
+          <td colspan="4" class="text-center">No se seleccionaron alimentos, debe ingresar por lo menos uno</td>
+        </tr>
+        <tr *ngFor="let alimento of seleccionTable.itemsFiltered; let i=index">
+          <td>
+            <input type="checkbox" [(ngModel)]="alimento.selected">
+          </td>
+          <td>
+            {{alimento.nombre | titlecase}}
+          </td>
+          <td>
+            {{alimento.cantidad}}
+          </td>
+          <td>
+            {{alimento.unidad}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-primary" (click)="agregarAlimentos()" [disabled]="!getTotalSeleccionados()">Agregar alimento</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-condensed table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Uni.Med.</th>
+          <th>Quitar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!alimentosTable.totalRows">
+          <td colspan="4" class="text-center">No se seleccionaron alimentos, debe ingresar por lo menos uno</td>
+        </tr>
+        <tr *ngFor="let alimento of alimentosTable.items; let i=index">
+          <td>
+            {{alimento.nombre | titlecase}}
+          </td>
+          <td>
+            {{alimento.cantidad}}
+          </td>
+          <td>
+            {{alimento.unidad}}
+          </td>
+          <td>
+            <button class="btn-link" (click)="quitarAlimento(i)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

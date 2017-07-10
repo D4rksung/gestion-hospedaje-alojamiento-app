@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-block">
+    <h3>Programación Diaria</h3>
+    <ngb-tabset #t="ngbTabset" (tabChange)="beforeChange($event,t)">
+      <ngb-tab *ngFor="let programacionDia of programacionesDia; let i = index" id="dia{{programacionDia.numeroDia}}">
+        <ng-template ngbTabTitle>
+          <button class="btn-link" *ngIf="programacionesDia.length>1" (click)="quitarProgramacionDia($event,i)">
+            <i class="fa fa-trash"></i>
+          </button>
+          Día {{programacionDia.numeroDia}}
+        </ng-template>
+        <ng-template ngbTabContent>
+          <gha-panel-programacion-dia [programacionDia]="programacionDia"></gha-panel-programacion-dia>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="+" id="add-day" *ngIf="programacionesDia.length<7">
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

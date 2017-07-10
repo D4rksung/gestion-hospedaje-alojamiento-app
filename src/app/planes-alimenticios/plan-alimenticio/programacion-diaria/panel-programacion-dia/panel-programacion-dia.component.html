@@ -1,0 +1,28 @@
+<div class="container" style="margin:20px 0">
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="comidas">Comidas Programadas</label>
+      <div class="btn-group" data-toggle="buttons" id="comidas">
+        <label class="btn btn-primary" *ngFor="let comida of comidas" [class.active]="comida.active">
+          <input type="checkbox" [checked]="comida.active" (change)="actualizarEstadoComida($event.target.checked,comida.tipo)">{{comida.abreviatura | uppercase}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ngb-accordion [closeOthers]="true">
+        <div *ngFor="let comida of comidas">
+          <ngb-panel *ngIf="comida.active">
+            <ng-template ngbPanelTitle>
+              <span>{{comida.nombre | titlecase}}</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <gha-panel-seleccion-alimentos [alimentos]="getAlimentosFromComida(comida)"></gha-panel-seleccion-alimentos>
+            </ng-template>
+          </ngb-panel>
+        </div>
+      </ngb-accordion>
+    </div>
+  </div>
+</div>

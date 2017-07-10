@@ -1,0 +1,73 @@
+{
+  "planesAlimenticios": [
+    {
+      "id": 1,
+      "nombre": "abc",
+      "descripcion": "lorem ipsum dolorem",
+      "especie": 1,
+      "condicionMedica": 1,
+      "criterios": [
+        {
+          "raza": 1,
+          "nivelBMI": 2,
+          "etapaVida": 1
+        },
+        {
+          "raza": 2,
+          "nivelBMI": 2,
+          "etapaVida": 1
+        }
+      ],
+      "programacionesDia": [
+        {
+          "numeroDia": 1,
+          "comidas": [
+            {
+              "tipo": 1,
+              "alimentos": [
+                1,
+                2,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "abc",
+      "descripcion": "lorem ipsum dolorem",
+      "especie": 1,
+      "condicionMedica": 1,
+      "criterios": [
+        {
+          "raza": 1,
+          "nivelBMI": 2,
+          "etapaVida": 1
+        }
+      ],
+      "programacionesDia": [
+        {
+          "numeroDia": 1,
+          "comidas": [
+            {
+              "tipo": 1,
+              "alimentos": [
+                1,
+                2
+              ]
+            },
+            {
+              "tipo": 3,
+              "alimentos": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
