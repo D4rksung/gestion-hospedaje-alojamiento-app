@@ -53,12 +53,18 @@ export class PlanAlimenticioComponent implements OnInit{
       this.setPlanAlimenticio(data.planAlimenticio);
       this.condicionesMedicas = this.filtrosService.getCondicionesMedicas(this.planAlimenticio.especie);
     });
+    this.razas=this.filtrosService.getRazas(this.planAlimenticio.especie);
   }
 
   onchangeEspecie(especie: number){
     this.planAlimenticio.condicionMedica = -1;
     this.condicionesMedicas = especie>=0?this.filtrosService.getCondicionesMedicas(especie):[];
-    this.razas=especie>=0?this.filtrosService.getRazas(especie):[];
+    if(especie<0){
+      this.razas = [];
+      this.planAlimenticio.criterios = [];
+    }else{
+      this.razas = this.filtrosService.getRazas(especie);
+    }
   }
 
   setPlanAlimenticio(planAlimenticio:PlanAlimenticio){
@@ -103,7 +109,7 @@ export class PlanAlimenticioComponent implements OnInit{
       alert('Debe seleccionar una especie');
     }else if(condicionMedica<0){
       result = false;
-      alert('Debe seleccionar una condicionMedica');
+      alert('Debe seleccionar una condición médica');
     }else if(!(criterios && criterios.length)){
       result = false;
       alert('Debe ingresar por lo menos un criterio');
