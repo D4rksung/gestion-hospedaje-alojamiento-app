@@ -1,3 +1,4 @@
+import { InformacionNutricionalService } from './../../../shared/informacion-nutricional.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProgramacionDia } from './../../../../models/programacion-dia.model';
 import { Comida, TipoComida } from './../../../../models/comida.model';
@@ -28,7 +29,7 @@ export class PanelProgramacionDiaComponent implements OnInit {
     active: false
   }];
 
-  constructor() { }
+  constructor(private informacionNutricionalService: InformacionNutricionalService) { }
 
   ngOnInit() {
     let comidas = this.programacionDia.comidas;
@@ -49,6 +50,7 @@ export class PanelProgramacionDiaComponent implements OnInit {
       comidasProgramadas.splice(comidasProgramadas.indexOf(comidaProgramada),1);
       comida.active = estado;
     }
+    this.informacionNutricionalService.updateAlimentos();
   }
 
   getAlimentosFromComida(comida){

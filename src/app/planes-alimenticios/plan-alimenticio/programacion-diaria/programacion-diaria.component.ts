@@ -1,3 +1,4 @@
+import { InformacionNutricionalService } from './../../shared/informacion-nutricional.service';
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbTabChangeEvent, NgbTabset} from '@ng-bootstrap/ng-bootstrap';
 import { ProgramacionDia } from './../../../models/programacion-dia.model';
@@ -12,7 +13,7 @@ export class ProgramacionDiariaComponent implements OnInit {
   lastTab:number = 1;
   quitarTab: boolean;
 
-  constructor() { }
+  constructor(private informacionNutricionalService: InformacionNutricionalService) { }
 
   ngOnInit() {
   }
@@ -26,6 +27,7 @@ export class ProgramacionDiariaComponent implements OnInit {
         let lastTabId = `dia${this.lastTab}`;
         ts.select(lastTabId);
         this.lastTab = num;
+        this.informacionNutricionalService.updateAlimentos();
       }
     }else{
       $event.preventDefault();
@@ -40,7 +42,7 @@ export class ProgramacionDiariaComponent implements OnInit {
     && !confirm('¿Está seguro que desea quitar el día de la programación?')){
       return;
     }
-
+    this.informacionNutricionalService.updateAlimentos();
     this.programacionesDia.splice(idxProgramacionDia,1);
     this.programacionesDia.forEach((p, i) =>{
       if(i >= idxProgramacionDia){
