@@ -53,7 +53,7 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
     let params = new URLSearchParams();
     let {nombre, especie, condicionMedica} = this.filtros;
     if(nombre && nombre.length){
-      params.set('nombre',nombre);
+      params.set('nombre_like',nombre);
     }
     if(especie>0){
       params.set('especie',`${especie}`);
@@ -68,7 +68,7 @@ export class ListaPlanesAlimenticiosComponent implements OnInit {
   }
 
   eliminar(planAlimenticio:PlanAlimenticio){
-    if(confirm(`¿Está seguro que desea eliminar el plan alimenticio ${planAlimenticio.nombre}?`)){
+    if(confirm(`¿Está seguro que desea eliminar el plan alimenticio "${planAlimenticio.nombre}"?`)){
       this.planAlimenticioService.deletePlanAlimenticio(planAlimenticio)
       .subscribe(a=>this.buscarPlanesAlimenticios());
     }

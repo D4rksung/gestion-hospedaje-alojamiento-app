@@ -1,3 +1,4 @@
+import { InformacionNutricionalService } from './../../../../shared/informacion-nutricional.service';
 import { FiltrosService } from './../../../../../filtros.service';
 import { Alimento, Categoria, SubCategoria} from './../../../../../models/alimento.model';
 import { AlimentosService } from './../../../../../alimentos/alimentos.service';
@@ -23,7 +24,9 @@ export class PanelSeleccionAlimentosComponent implements OnInit{
   categorias: Categoria[];
   subcategorias: SubCategoria[];
 
-  constructor(private filtrosService: FiltrosService,private alimentoService: AlimentosService) {
+  constructor(private filtrosService: FiltrosService,
+  private alimentoService: AlimentosService,
+  private informacionNutricionalService: InformacionNutricionalService) {
     this.categorias = this.filtrosService.getCategorias();
   }
 
@@ -38,16 +41,13 @@ export class PanelSeleccionAlimentosComponent implements OnInit{
   }
 
   getAlimentos(){
-    this.alimentoService.getAlimentos()
-    .subscribe(alimentos=>{
-      this.allAlimentos = alimentos;
-      alimentos.forEach(a=>{
-        if(this.alimentos.includes(a.id)){
-          this.alimentosTable.items.push(a);
-        }
-      });
-      this.filtrarAlimentos();
+    this.allAlimentos = this.alimentoService.getAlimentos();
+    this.allAlimentos.forEach(a=>{
+      if(this.alimentos.includes(a.id)){
+        this.alimentosTable.items.push(a);
+      }
     });
+    this.filtrarAlimentos();
   }
 
   filtrarAlimentos(){
@@ -74,6 +74,7 @@ export class PanelSeleccionAlimentosComponent implements OnInit{
       }
     });
     this.filtrarAlimentos();
+    this.informacionNutricionalService.updateAlimentos();
   }
 
   getTotalSeleccionados(){
@@ -84,5 +85,6 @@ export class PanelSeleccionAlimentosComponent implements OnInit{
     this.alimentosTable.items.splice(idxAlimento,1);
     this.alimentos.splice(idxAlimento,1);
     this.filtrarAlimentos();
+    this.informacionNutricionalService.updateAlimentos();
   }
 }

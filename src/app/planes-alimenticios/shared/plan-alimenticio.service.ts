@@ -27,8 +27,6 @@ export class PlanAlimenticioService {
   }
 
   getPlanesAlimenticiosWithFilter(params: URLSearchParams){
-    let myParams = new URLSearchParams();
-    myParams.set('especie','2');
     return <Observable<PlanAlimenticio[]>>this.http
     .get(planesAlimenticiosUrl, {params})
     .map(res => this.extractData<PlanAlimenticio[]>(res));
